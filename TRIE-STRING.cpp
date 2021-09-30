@@ -17,39 +17,33 @@ struct TrieNode {
  
 TrieNode* get_node() {
     struct TrieNode *new_node =  new TrieNode;
- 
-    new_node->is_word = false;
-    
+    new_node->is_word = false;    
     rep(i, 0, ALPHABET_SIZE - 1) 
         new_node->next[i] = NULL;
  
     return new_node;
 }
  
-void insert(TrieNode *root, string key) {
-    TrieNode *cur = root;
- 
+void insert(TrieNode *root, string key) { 
     rep(i, 0, sz(key) - 1) {
         int ind = key[i] - 'a';
-        if (!cur->next[ind])
-            cur->next[ind] = get_node();
+        if (!root->next[ind])
+            root->next[ind] = get_node();
  
-        cur = cur->next[ind];
+        root = root->next[ind];
     }
  
-    cur->is_word = true;
+    root->is_word = true;
 }
  
 bool search(TrieNode *root, string key) {
-    struct TrieNode *cur = root;
- 
     rep(i, 0, sz(key) - 1) {
         int ind = key[i] - 'a';
-        if (!cur->next[ind])
+        if (!root->next[ind])
             return false;
  
-        cur = cur->next[ind];
+        root = root->next[ind];
     }
  
-    return (cur->is_word);
+    return (root->is_word);
 }
