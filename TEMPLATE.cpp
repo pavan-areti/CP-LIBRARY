@@ -15,7 +15,7 @@ int rnd(int x, int y) {return (rng() % (y - x + 1)) + x;};
 #define ins insert
 #define ull unsigned long long
 #define rep(i, begin, end) for (__typeof(begin) i = (begin); i <= (end); ++i)
-#define repr(i, begin, end) for (__typeof(begin) i = (begin); i >= (end); --i)
+#define repr(i, begin, end) for (__typeof(end) i = (begin); i >= (end); --i)
 #define ff first
 #define ss second
 #define fast ios::sync_with_stdio(0), cin.tie(0), cout.tie(0);
