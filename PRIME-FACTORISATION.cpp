@@ -1,3 +1,7 @@
+/*  Pollard-Rho Factorisation 
+    Source : https://github.com/kth-competitive-programming/kactl/blob/main/content/number-theory/ModMulLL.h
+*/
+
 int modmul(int a, int b, int M) {
     int ret = a * b - M * (int)(1.L / M * a * b);
     return ret + M * (ret < 0) - M * (ret >= (int)M);
