@@ -1,4 +1,5 @@
-/*  Pollard-Rho Factorisation 
+/*  
+    Pollard-Rho Factorisation 
     Source : https://github.com/kth-competitive-programming/kactl/blob/main/content/number-theory/ModMulLL.h
 */
 
