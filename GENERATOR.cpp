@@ -1,14 +1,50 @@
 // credits: codeforces blog (forgot which one it was)
 
-#include <bits/stdc++.h>
+#pragma GCC target ("avx2")
+#pragma GCC optimize ("O3")
+#pragma GCC optimize ("unroll-loops")
+
+#include<bits/stdc++.h>
 using namespace std;
 
 #define int long long
+#define pb push_back
+#define lb lower_bound
+#define ub upper_bound
+#define ins insert
+#define ull unsigned long long
+#define rep(i, begin, end) for (__typeof(begin) i = (begin); i <= (end); ++i)
+#define repr(i, begin, end) for (__typeof(end) i = (begin); i >= (end); --i)
+#define ff first
+#define ss second
+#define fast ios::sync_with_stdio(0), cin.tie(0), cout.tie(0);
+#define nl "\n"
+#define sz(a) (int)(a).size()
+#define all(a) (a).begin(), (a).end()
+#define fl(a,x) memset(a, x, sizeof(a));
+#define mt make_tuple
+#define mxe max_element
+#define mne min_element
+#define present(c, x) (c.find(x) != c.end())
+#define get(a, begin, end) rep(i, (begin), (end)) cin >> (a)[i];
+#define show(a, begin, end) rep(i, (begin), (end)) cout << (a)[i] << " "; cout << nl;
+#define ld long double 
+#define vec vector
+
+typedef pair<int,int> pii;
+
+#define err(args...) { string _s = #args; replace(_s.begin(), _s.end(), ',', ' '); stringstream _ss(_s); istream_iterator<string> _it(_ss); error(true, _it, args); }
+ 
+void error(bool newline, istream_iterator<string> it) {}
+template<typename T, typename... Args>
+void error( bool newline, istream_iterator<string> it, T a, Args... args) {
+    cout << "[ " << *it << " = " << a << " ] ";
+    error(false, ++it, args...);
+    if(newline) cout << '\n';
+}
+
 #define accuracy chrono::steady_clock::now().time_since_epoch().count()
-#define rep(i,a,n) for (int i = a; i <= n; ++i)
-
 const int N = 1e6 + 4;
-
 int32_t permutation[N];
 
 mt19937 rng(accuracy);
@@ -16,10 +52,7 @@ mt19937 rng(accuracy);
 int rand(int l, int r){
   uniform_int_distribution<int> ludo(l, r); return ludo(rng);
 }
-
 const int inf = 1LL << 31;
-
-using pii = pair<int,int>;
 
 namespace generator {
   string gen_string(int len = 0, bool upperCase = false, int l = 1, int r = 26) {
@@ -97,18 +130,16 @@ const int max_tests = 10;
 
 // complete this function according to the requirements
 void generate_test() {
-  int n = rand(1, 40);
-	cout << n << '\n';
-	cout << gen_array(n, 1, 20);
+
 }
 
 signed main() {
-  srand(accuracy);
-  int t = 1;
-  #ifndef SINGLE_TEST
-    t = rand(1, max_tests), cout << t << '\n';
-  #endif
-  while (t--) {
-    generate_test();
-  }
+    srand(accuracy);
+    int t = 1;
+    #ifndef SINGLE_TEST
+        t = rand(1, max_tests), cout << t << '\n';
+    #endif
+    while(t--) {
+        generate_test();
+    }
 }
