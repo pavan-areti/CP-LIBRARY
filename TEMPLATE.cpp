@@ -48,6 +48,7 @@ const int mod = 1e9 + 7;
 const int MOD = 998244353;
 const int INF = 1e18;
 const int mxN = 1e6 + 5;
+const int dx[8] = {1, 0, -1, 0, 1, 1, -1, -1}, dy[8] = {0, 1, 0, -1, -1, 1, -1, 1};
 
 void solve() {
     
