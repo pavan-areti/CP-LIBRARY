@@ -2,7 +2,7 @@ struct Hasher {
     int n, p, mod;
     vec<int> fHash;
     vec<int> pk;
-    Hasher(string s, int _p, int _mod) {
+    Hasher(const string &s, int _p, int _mod) {
         mod = _mod, p = _p;
         n = sz(s);
         fHash.resize(n);
