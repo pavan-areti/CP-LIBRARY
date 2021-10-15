@@ -1,15 +1,13 @@
-struct P {
-    vec<int> d, p;
-    vec<bool> vis;
-};
+vec<int> d(mxN), p(mxN), vis(mxN);
 
-P bfs(int s, int n, vec<vec<int>> &g) {
+void bfs(int s, int n, vec<vec<int>> &g) {
     queue<int> q;
-    vec<int> d(n + 1, 0), p(n + 1, 0);
-    vec<bool> vis(n + 1, 0);
+    rep(i, 1, n) {
+        d[i] = p[i] = vis[i] = 0;
+    }
 
     q.push(s);    
-    vis[s] = true;
+    vis[s] = 1;
     p[s] = -1;
     
     while(sz(q)) {
@@ -17,18 +15,16 @@ P bfs(int s, int n, vec<vec<int>> &g) {
         q.pop();
         for (int u : g[v]) {
             if (!vis[u]) {
-                vis[u] = true;
+                vis[u] = 1;
                 q.push(u);
                 d[u] = d[v] + 1;
                 p[u] = v;
             }
         }
     }
-
-    return {d, p, vis};
 }
 
-vec<int> path_retrieve(int u, vec<int> &p, vec<int> &vis) {
+vec<int> path_retrieve(int u) {
     if(!vis[u]) {
         return {};
     } 
