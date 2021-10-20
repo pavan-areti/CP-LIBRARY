@@ -5,8 +5,16 @@
 #include<bits/stdc++.h>
 using namespace std;
 
+// #include <ext/pb_ds/assoc_container.hpp>
+// #include <ext/pb_ds/tree_policy.hpp>
+// using namespace __gnu_pbds;  
+// #define ordered_set tree<int, null_type,less<int>, rb_tree_tag,tree_order_statistics_node_update>
+
+
 mt19937 rng(chrono::steady_clock::now().time_since_epoch().count());
-int rnd(int x, int y) {return (rng() % (y - x + 1)) + x;};
+int rand(int l, int r){
+  uniform_int_distribution<int> ludo(l, r); return ludo(rng);
+}
 
 #define int long long
 #define pb push_back
@@ -49,6 +57,8 @@ const int MOD = 998244353;
 const int INF = 1e18;
 const int mxN = 1e6 + 5;
 const int dx[8] = {1, 0, -1, 0, 1, 1, -1, -1}, dy[8] = {0, 1, 0, -1, -1, 1, -1, 1};
+///////////////////////////////////////////////////////////////////////////////////
+
 
 void solve() {
     
