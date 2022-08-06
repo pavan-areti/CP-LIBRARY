@@ -13,8 +13,9 @@ struct SCC {
     vector<int> component;
     map<int, vector<int>> components;
     int numComponents;
+    vector<vector<int>> kernel;
 
-    SCC(int n, int m, vector<vector<int>> &g) {
+    SCC(int n, int m, const vector<vector<int>> &g) {
         this->n = n;
         this->m = m;
         this->numComponents = 0;
@@ -63,4 +64,17 @@ struct SCC {
             }
         }
     }    
+
+    void createKernelDAG() {
+        kernel.resize(numComponents + 1);
+        for(auto &[comp_id, nodes] : components) {
+            for(int u : nodes) {
+                for(int v : g[u].adj) {
+                    if(component[u] != component[v]) {
+                        kernel[comp_id].push_back(component[v]);
+                    }
+                }
+            }
+        }        
+    }
 };
