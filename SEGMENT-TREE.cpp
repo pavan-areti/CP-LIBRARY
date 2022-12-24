@@ -1,43 +1,56 @@
-vec<int> a(mxN), tree(4 * mxN);
+struct SegTree {
+    int N;
+    vector<int> a, tree;
 
-void build(int node, int start, int end) {
-    if(start == end) {
-        tree[node] = a[start];
+    SegTree(int n) {
+        N = n;
+        a.resize(n + 1);
+        tree.resize(4 * n + 1);  
     }
-    else {
-        int mid = (start + end) / 2;
-        build(2 * node, start, mid);
-        build(2 * node + 1, mid + 1, end);
-        tree[node] = tree[2 * node] + tree[2 * node + 1];
-    }
-}
 
-void update(int node, int start, int end, int idx, int val) {
-    if(start == end) {
-        a[idx] += val;
-        tree[node] += val;
+    int combine(int a, int b) {
+        // return a + b;
     }
-    else {
-        int mid = (start + end) / 2;
-        if(start <= idx and idx <= mid) {
-            update(2 * node, start, mid, idx, val);
+
+    void build(int node, int start, int end) {
+        if(start == end) {
+            tree[node] = a[start];
         }
         else {
-            update(2 * node + 1, mid + 1, end, idx, val);
+            int mid = (start + end) / 2;
+            build(2 * node, start, mid);
+            build(2 * node + 1, mid + 1, end);
+            tree[node] = combine(tree[2 * node], tree[2 * node + 1]);
         }
-        tree[node] = tree[2 * node] + tree[2 * node + 1];
     }
-}
+    void build() {build(1, 1, N);}
 
-int query(int node, int start, int end, int l, int r) {
-    if(r < start or end < l) {
-        return 0;
+    void update(int idx, int val, int node, int start, int end) {
+        if(start == end) {
+            a[idx] = val;
+            tree[node] = val;
+            return;
+        }
+        int mid = start + (end - start)/2;
+        if(start <= idx and idx <= mid) {
+            update(idx, val, 2 * node, start, mid);
+        }
+        else {
+            update(idx, val, 2 * node + 1, mid + 1, end);
+        }
+        tree[node] = combine(tree[2 * node], tree[2 * node + 1]);
     }
-    if(l <= start and end <= r) {
-        return tree[node];
+    void update(int idx, int val) {update(idx, val, 1, 1, N);}
+
+    int query(int l, int r, int node, int start, int end) {
+        if(r < start or end < l) {
+            return 0;
+        }
+        if(l <= start and end <= r) {
+            return tree[node];
+        }
+        int mid = start + (end - start)/2; 
+        return combine(query(l, r, 2 * node, start, mid), query(l, r, 2 * node + 1, mid + 1, end));
     }
-    int mid = (start + end) / 2;
-    int p1 = query(2 * node, start, mid, l, r);
-    int p2 = query(2 * node + 1, mid + 1, end, l, r);
-    return (p1 + p2);
-}
+    int query(int l, int r) {return query(l, r, 1, 1, N);}
+};
