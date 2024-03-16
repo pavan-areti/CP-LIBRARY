@@ -14,3 +14,6 @@ in this kind of problem we can use the same element many times so we iterate fro
 
 ### when its required to do with exactly n elements
 In this kind of problem we cant use the previous dp[i-1] vlaues directly for dp[i], as previous one is created with i-1 values. so we need to create a new empty array and then we can use the previous row as per the requirements.
+
+### when using memoisation to do the dp
+In this case when some state is present think whether all things comes to this state are same or we want them to be different, if we want them to be different return the summations instead using the dp to check if the state is visited or not.
