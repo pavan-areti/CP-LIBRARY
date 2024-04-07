@@ -1,0 +1,1 @@
+- While doing AND operation, it only decreases always.
